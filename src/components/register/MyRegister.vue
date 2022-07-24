@@ -1,0 +1,201 @@
+<template>
+    <div class="register-container">
+    <!-- 注册内容 -->
+    <div class="register">
+      <h3>
+        注册新用户
+        <span class="go">我有账号，去 <router-link to="/login">登陆</router-link> </span>
+      </h3>
+      <!-- 手机号 -->
+      <div class="content">
+        <label>手机号:</label>
+        <input type="text" placeholder="请输入你的手机号" v-model="phone" />
+        <span class="error-msg">错误提示信息</span>
+      </div>
+      <!-- 验证码 -->
+      <div class="content">
+        <label>验证码:</label>
+        <input type="text" placeholder="请输入验证码" v-model="code" />
+        <button style="height: 38px" @click="getCode">获取验证码</button>
+        <span class="error-msg">错误提示信息</span>
+      </div>
+      <!-- 登录密码 -->
+      <div class="content">
+        <label>登录密码:</label>
+        <input
+          type="text"
+          placeholder="请输入你的登录密码"
+          v-model="password"
+        />
+        <span class="error-msg">错误提示信息</span>
+      </div>
+      <!-- 确认密码 -->
+      <div class="content">
+        <label>确认密码:</label>
+        <input type="text" placeholder="请输入确认密码" v-model="password1" />
+        <span class="error-msg">错误提示信息</span>
+      </div>
+      <!-- 勾选协议 -->
+      <div class="controls">
+        <input name="m1" type="checkbox" :checked="agree" />
+        <span>同意协议并注册《尚品汇用户协议》</span>
+        <span class="error-msg">错误提示信息</span>
+      </div>
+      <!-- 注册按钮 -->
+      <div class="btn">
+        <button @click="register">完成注册</button>
+      </div>
+      <el-row>
+        <el-button icon="el-icon-search" circle></el-button>
+        <el-button type="primary" icon="el-icon-edit" circle></el-button>
+        <el-button type="success" icon="el-icon-check" circle></el-button>
+        <el-button type="info" icon="el-icon-message" circle></el-button>
+        <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+        <el-button type="danger" icon="el-icon-delete" circle></el-button>
+      </el-row>
+    </div>
+
+  </div>
+</template>
+
+<script>
+export default {
+    name:'MyRegister',
+//     data() {
+//     return {
+//       //手机号
+//       phone: "",
+//       //存储验证码
+//       code: "",
+//       //登录密码
+//       password: "",
+//       //确认密码
+//       password1: "",
+//       //协议收集
+//       agree: true,
+//     };
+//   },
+//   methods: {
+//     //获取验证码按钮的回调
+//     async getCode() {
+//       const { phone } = this;
+//       //先不处理表单验证业务
+//       if (phone) {
+//         try {
+//           //获取验证码成功
+//           await this.$store.dispatch("getCode", phone);
+//           //修改VC身上的code属性,让验证码自动展示
+//           this.code = this.$store.state.user.code;
+//         } catch (error) {}
+//       }
+//     },
+//     //注册按钮的回调
+//     async register() {
+//       //解构出参数
+//       const { phone, code, password, password1 } = this;
+//       //目前不做表单验证
+//       if (phone && code && password == password1) {
+//         //通知vuex发请求，进行用户的注册
+//         try {
+//           //注册成功
+//           await this.$store.dispatch("registerUser", { phone, code, password });
+//           //让用户跳转到登录页面进行登录
+//           this.$router.push('/login');
+//         } catch (error) {
+//           //注册失败
+//           alert(error.message);
+//         }
+//       }
+//     },
+//   },
+}
+</script>
+
+<style scoped>
+    .register {
+    width: 1200px;
+    height: 445px;
+    border: 1px solid rgb(223, 223, 223);
+    margin: 0 auto;
+    }
+    h3 {
+      background: #ececec;
+      margin: 0;
+      padding: 6px 15px;
+      color: #333;
+      border-bottom: 1px solid #dfdfdf;
+      font-size: 20.04px;
+      line-height: 30.06px;
+    }
+   .register h3 span {
+        font-size: 14px;
+        float: right;
+    }
+    a {
+        color: #e1251b;
+    }
+    div:nth-of-type(1) {
+      margin-top: 40px;
+    }
+    .content {
+      padding-left: 390px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .content label {
+        font-size: 14px;
+        width: 96px;
+        text-align: right;
+        display: inline-block;
+      }
+     .content input {
+        width: 270px;
+        height: 38px;
+        padding-left: 8px;
+        box-sizing: border-box;
+        margin-left: 5px;
+        outline: none;
+        border: 1px solid #999;
+        vertical-align: middle;
+      }
+      .content img {
+        vertical-align: sub;
+      }
+      .error-msg {
+        position: absolute;
+        top: 100%;
+        left: 495px;
+        color: red;
+        display: none;
+      }
+       .controls {
+        text-align: center;
+        position: relative;
+        font-size: 13px;
+      }
+      .controls span{
+        position: relative;
+        margin-left: 3px;
+        top: -1px;
+      }
+      .btn {
+      text-align: center;
+      line-height: 36px;
+      margin: 17px 0 0 55px;
+      }
+      .btn button {
+        outline: none;
+        width: 270px;
+        height: 36px;
+        background: #e1251b;
+        color: #fff !important;
+        display: inline-block;
+        font-size: 16px;
+      }
+       li {
+        display: inline-block;
+        border-right: 1px solid #e4e4e4;
+        padding: 0 20px;
+        margin: 15px 0;
+      }
+</style>
